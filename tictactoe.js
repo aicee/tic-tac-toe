@@ -40,9 +40,12 @@ function updateStatus() {
 // Print board in browser
 function updateBox(index, value) {
   var box = document.getElementById("box" + (index + 1));
+  if (!box) return;
   box.innerHTML = value;
-  if (value == "O") {
+  if (value === "O") {
     box.classList.add("text-yellow-500");
+  } else {
+    box.classList.remove("text-yellow-500");
   }
 }
 
