@@ -53,7 +53,7 @@ function disableBox() {
   for (var i = 1; i < 10; i++) {
     document.getElementById("box" + i).setAttribute("disabled", "");
     document.getElementById("box" + i).classList.add("disabled:opacity-50");
-    document.getElementById("box" + i).classList.remove("hover:bg-sky-950");
+    document.getElementById("box" + i).classList.remove("hover:bg-sky-300");
   }
 }
 
@@ -61,7 +61,7 @@ function enableBox() {
   for (var i = 1; i < 10; i++) {
     document.getElementById("box" + i).removeAttribute("disabled");
     document.getElementById("box" + i).classList.remove("disabled:opacity-50");
-    document.getElementById("box" + i).classList.add("hover:bg-sky-950");
+    document.getElementById("box" + i).classList.add("hover:bg-sky-300");
     document.getElementById("box" + i).classList.remove("text-yellow-500");
   }
 }
@@ -198,27 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updateStatus();
     });
   }
-  
-  // Initialize status display
-  const statusDiv = document.createElement('div');
-  statusDiv.id = 'gameStatus';
-  statusDiv.className = 'text-xl font-bold text-sky-800 my-2';
-  const mainElement = document.querySelector('main');
-  if (mainElement) {
-    mainElement.insertBefore(statusDiv, mainElement.firstChild);
-  }
-  
-  // Add reset scores button
-  const resetScoresBtn = document.createElement('button');
-  resetScoresBtn.textContent = 'Reset All Scores';
-  resetScoresBtn.className = 'border-none rounded-xl shadow-md shadow-sky-950 bg-red-600 text-lg hover:bg-red-700 text-white px-4 py-2 mt-2 font-mono font-semibold ml-4';
-  resetScoresBtn.onclick = resetScores;
-  
-  const resetBtn = document.querySelector('button[onclick="resetBoard()"]');
-  if (resetBtn && resetBtn.parentNode) {
-    resetBtn.parentNode.insertBefore(resetScoresBtn, resetBtn.nextSibling);
-  }
-  
+
   updateStatus();
 });
 
