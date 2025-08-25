@@ -53,7 +53,7 @@ function disableBox() {
   for (var i = 1; i < 10; i++) {
     document.getElementById("box" + i).setAttribute("disabled", "");
     document.getElementById("box" + i).classList.add("disabled:opacity-50");
-    document.getElementById("box" + i).classList.remove("hover:bg-sky-950");
+    document.getElementById("box" + i).classList.remove("hover:bg-sky-300");
   }
 }
 
@@ -61,7 +61,7 @@ function enableBox() {
   for (var i = 1; i < 10; i++) {
     document.getElementById("box" + i).removeAttribute("disabled");
     document.getElementById("box" + i).classList.remove("disabled:opacity-50");
-    document.getElementById("box" + i).classList.add("hover:bg-sky-950");
+    document.getElementById("box" + i).classList.add("hover:bg-sky-300");
     document.getElementById("box" + i).classList.remove("text-yellow-500");
   }
 }
@@ -85,7 +85,14 @@ function checkWinner() {
       document.getElementById(`score${winner === 'X' ? '1' : '2'}`).textContent = scores[winner];
       
       const winnerName = winner === 'X' ? playerNames.X : playerNames.O;
+
+      // announce winner and update status
       winnerAnnouncer(true, winnerName);
+      const statusElement = document.getElementById('gameStatus');
+      if (statusElement) {
+        statusElement.textContent = `${winnerName} wins!`;
+      }
+
       disableBox();
       return true;
     }
@@ -95,11 +102,13 @@ function checkWinner() {
 
 function winnerAnnouncer(isVisible, winner = '') {
   const winAlert = document.getElementById("winAlert");
+  if (!winAlert) return;
+
   if (isVisible) {
     winAlert.textContent = `${winner} wins! 🎉`;
     winAlert.classList.remove('invisible', 'opacity-0', 'scale-90');
     winAlert.classList.add('opacity-100', 'scale-100');
-    
+
     // Auto-hide after 3 seconds
     setTimeout(() => {
       winnerAnnouncer(false);
@@ -107,15 +116,18 @@ function winnerAnnouncer(isVisible, winner = '') {
   } else {
     winAlert.classList.remove('opacity-100', 'scale-100');
     winAlert.classList.add('opacity-0', 'scale-90');
+    setTimeout(() => winAlert.classList.add('invisible'), 300);
   }
 }
 
 function drawAnnouncer(isVisible) {
   const drawAlert = document.getElementById("drawAlert");
+  if (!drawAlert) return;
+
   if (isVisible) {
     drawAlert.classList.remove('invisible', 'opacity-0', 'scale-90');
     drawAlert.classList.add('opacity-100', 'scale-100');
-    
+
     // Auto-hide after 3 seconds
     setTimeout(() => {
       drawAnnouncer(false);
@@ -123,12 +135,19 @@ function drawAnnouncer(isVisible) {
   } else {
     drawAlert.classList.remove('opacity-100', 'scale-100');
     drawAlert.classList.add('opacity-0', 'scale-90');
+    setTimeout(() => drawAlert.classList.add('invisible'), 300);
   }
 }
 
 function checkDraw(hasWinner) {
   if (!hasWinner && counter == 9) {
     drawAnnouncer(true);
+
+    const statusElement = document.getElementById('gameStatus');
+    if (statusElement) {
+      statusElement.textContent = "It's a draw!";
+    }
+
     disableBox();
   }
 }
@@ -198,27 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updateStatus();
     });
   }
-  
-  // Initialize status display
-  const statusDiv = document.createElement('div');
-  statusDiv.id = 'gameStatus';
-  statusDiv.className = 'text-xl font-bold text-sky-800 my-2';
-  const mainElement = document.querySelector('main');
-  if (mainElement) {
-    mainElement.insertBefore(statusDiv, mainElement.firstChild);
-  }
-  
-  // Add reset scores button
-  const resetScoresBtn = document.createElement('button');
-  resetScoresBtn.textContent = 'Reset All Scores';
-  resetScoresBtn.className = 'border-none rounded-xl shadow-md shadow-sky-950 bg-red-600 text-lg hover:bg-red-700 text-white px-4 py-2 mt-2 font-mono font-semibold ml-4';
-  resetScoresBtn.onclick = resetScores;
-  
-  const resetBtn = document.querySelector('button[onclick="resetBoard()"]');
-  if (resetBtn && resetBtn.parentNode) {
-    resetBtn.parentNode.insertBefore(resetScoresBtn, resetBtn.nextSibling);
-  }
-  
+
   updateStatus();
 });
 
