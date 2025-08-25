@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Ceecee's 1st app -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tic Tac Toe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="./styles.css" /> -->
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+  </head>
+
+  <body class="text-center bg-sky-200 flex flex-col min-h-screen">
+    <!-- Notifications Container -->
+    <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-10">
+      <div class="flex flex-col items-center">
+        <div
+          id="winAlert"
+          class="w-96 h-16 bg-red-900 bg-opacity-95 text-white text-xl rounded-lg shadow-2xl flex items-center justify-center font-mono invisible transform transition-all duration-300 scale-90 opacity-0"
+        >
+          YOU WIN!! 🎉
+        </div>
+        <div
+          id="drawAlert"
+          class="w-96 h-16 bg-orange-700 bg-opacity-95 text-white text-xl rounded-lg shadow-2xl flex items-center justify-center font-mono invisible transform transition-all duration-300 scale-90 opacity-0 mt-4"
+        >
+          ~~ TIE ~~
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 flex-grow flex flex-col">
+      <h1 class="text-sky-950 text-3xl font-mono mb-8">tic tac toe</h1>
+    
+    <!-- Player Input Section -->
+    <div class="flex justify-center space-x-8 my-6">
+      <div class="flex flex-col items-center">
+        <label for="player1" class="text-sky-800 mb-1">Player 1 (X)</label>
+        <input type="text" id="player1" placeholder="Enter name" class="px-3 py-1 rounded border border-sky-500 text-center">
+        <div class="mt-2 text-xl font-bold text-sky-900" id="score1">0</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <label for="player2" class="text-sky-800 mb-1">Player 2 (O)</label>
+        <input type="text" id="player2" placeholder="Enter name" class="px-3 py-1 rounded border border-sky-500 text-center">
+        <div class="mt-2 text-xl font-bold text-sky-900" id="score2">0</div>
+      </div>
+    </div>
+    
+    <main class="mt-4 text-teal-400">
+      <div class="rows flex mb-10 space-x-10 justify-center">
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box1"
+          onclick="playTurn(0)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box2"
+          onclick="playTurn(1)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box3"
+          onclick="playTurn(2)"
+        ></button>
+      </div>
+      <div class="rows flex mb-10 space-x-10 justify-center">
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box4"
+          onclick="playTurn(3)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box5"
+          onclick="playTurn(4)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box6"
+          onclick="playTurn(5)"
+        ></button>
+      </div>
+      <div class="rows flex mb-10 space-x-10 justify-center">
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box7"
+          onclick="playTurn(6)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box8"
+          onclick="playTurn(7)"
+        ></button>
+        <button
+          class="box flex justify-center items-center border-none rounded-xl shadow-xl shadow-sky-950 hover:bg-sky-950 bg-sky-900 w-28 h-28 text-6xl font-extrabold font-sans"
+          id="box9"
+          onclick="playTurn(8)"
+        ></button>
+      </div>
+      <button
+        class="border-none rounded-xl shadow-md shadow-sky-950 bg-sky-900 text-lg hover:bg-sky-950 text-white px-4 py-2 mt-4 font-mono font-semibold"
+        onclick="resetBoard()"
+      >
+        New Game
+      </button>
+    </main>
+    <script src="./tictactoe.js"></script>
+    <!-- <script src="./app.js"></script> -->
+  </body>
+</html>
